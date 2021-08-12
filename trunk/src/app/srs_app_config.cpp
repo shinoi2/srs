@@ -5055,6 +5055,42 @@ bool SrsConfig::get_rtc_twcc_enabled(string vhost)
     return SRS_CONF_PERFER_TRUE(conf->arg0());
 }
 
+bool SrsConfig::get_rtc_video_enabled(string vhost)
+{
+    static bool DEFAULT = true;
+
+    SrsConfDirective* conf = get_rtc(vhost);
+    if (!conf) {
+        return DEFAULT;
+    }
+
+    conf = conf->get("rtc_video_enabled");
+    if (!conf || conf->arg0().empty()) {
+        return DEFAULT;
+    }
+
+    return SRS_CONF_PERFER_FALSE(conf->arg0());
+}
+
+
+bool SrsConfig::get_rtc_audio_enabled(string vhost)
+{
+    static bool DEFAULT = true;
+
+    SrsConfDirective* conf = get_rtc(vhost);
+    if (!conf) {
+        return DEFAULT;
+    }
+
+    conf = conf->get("rtc_audio_enabled");
+    if (!conf || conf->arg0().empty()) {
+        return DEFAULT;
+    }
+
+    return SRS_CONF_PERFER_FALSE(conf->arg0());
+}
+
+
 SrsConfDirective* SrsConfig::get_vhost(string vhost, bool try_default_vhost)
 {
     srs_assert(root);

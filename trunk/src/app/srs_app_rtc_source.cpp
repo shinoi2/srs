@@ -370,7 +370,7 @@ void SrsRtcSource::init_for_play_before_publishing()
     SrsAutoFree(SrsRtcSourceDescription, stream_desc);
 
     // audio track description
-    if (true) {
+    if (_srs_config->get_rtc_audio_enabled(req->vhost)) {
         SrsRtcTrackDescription* audio_track_desc = new SrsRtcTrackDescription();
         stream_desc->audio_track_desc_ = audio_track_desc;
 
@@ -385,7 +385,7 @@ void SrsRtcSource::init_for_play_before_publishing()
     }
 
     // video track description
-    if (true) {
+    if (_srs_config->get_rtc_video_enabled(req->vhost)) {
         SrsRtcTrackDescription* video_track_desc = new SrsRtcTrackDescription();
         stream_desc->video_track_descs_.push_back(video_track_desc);
 

@@ -32,9 +32,9 @@ function SrsRtcPublisherAsync() {
     // https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
     self.constraints = {
         audio: true,
-        video: {
-            width: {ideal: 320, max: 576}
-        }
+        // video: {
+        //     width: {ideal: 320, max: 576}
+        // }
     };
 
     // @see https://github.com/rtcdn/rtcdn-draft
@@ -62,7 +62,7 @@ function SrsRtcPublisherAsync() {
     self.publish = async function (url) {
         var conf = self.__internal.prepareUrl(url);
         self.pc.addTransceiver("audio", {direction: "sendonly"});
-        self.pc.addTransceiver("video", {direction: "sendonly"});
+        // self.pc.addTransceiver("video", {direction: "sendonly"});
 
         var stream = await navigator.mediaDevices.getUserMedia(self.constraints);
 
@@ -301,7 +301,7 @@ function SrsRtcPlayerAsync() {
     self.play = async function(url) {
         var conf = self.__internal.prepareUrl(url);
         self.pc.addTransceiver("audio", {direction: "recvonly"});
-        self.pc.addTransceiver("video", {direction: "recvonly"});
+        // self.pc.addTransceiver("video", {direction: "recvonly"});
 
         var offer = await self.pc.createOffer();
         await self.pc.setLocalDescription(offer);
