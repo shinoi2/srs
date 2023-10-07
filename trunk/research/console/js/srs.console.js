@@ -558,7 +558,7 @@ scApp.filter("sc_filter_number", function(){
 
 scApp.filter("sc_filter_less", function(){
     return function(v) {
-        return v? (v.length > 15? v.slice(0, 15) + "...":v):v;
+        return v? (v.length > 20? v.slice(0, 20) + "...":v):v;
     };
 });
 
